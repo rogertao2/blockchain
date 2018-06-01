@@ -1,0 +1,24 @@
+﻿Express Installing:
+===================
+> npm init
+> npm install express --save
+
+Express application generator:
+==============================
+> npm install express-generator -g
+> express --view=pug myapp
+> cd myapp
+> npm install	(install dependencies)
+> set DEBUG=myapp:* & npm start	(run the app)
+
+then load http://localhost:3000/ in your browser
+
+Run file.js
+===========
+> node app.js
+
+Use nodemon to auto restart node when the file is changed:
+> nodemon app.js
+
+
+
