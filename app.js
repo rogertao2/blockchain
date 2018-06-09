@@ -4,6 +4,10 @@ var app = express();
 
 app.use(express.static('public'));
 
+app.post('/api/hash-data', function(req, res) {
+    res.send('Hash Data');
+});
+
 /*
 app.get('/root', function(req, res) {
     res.send('Hello!');

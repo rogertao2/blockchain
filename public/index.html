@@ -9,6 +9,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="/resources/css/w3.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 <body>
 
@@ -26,47 +27,47 @@
 		</div>
 	</div>
 
-	<!-- Block Menu -->
+	<!-- Block Menu Area -->
 	<div id="Block" class="w3-container w3-border menuBlock">
 
 		<h2>Block</h2>
 
-		<div class="w3-card w3-padding-16 w3-margin-bottom w3-pale-green" style="width:80%;">
-			<form>
+		<div class="w3-card w3-padding-16 w3-margin-bottom w3-pale-green">
+			<form name="frm">
 			<div class="w3-row-padding w3-margin-bottom">
 				<div class="w3-third"><label>Block# :</label></div>
-				<div class="w3-twothird"><input class="w3-input w3-border w3-round" name="blockNo" type="text"></div>
+				<div class="w3-twothird"><input class="w3-input w3-border w3-round" name="txbBlockNo" type="text"></div>
 			</div>
 			<div class="w3-row-padding w3-margin-bottom">
 				<div class="w3-third"><label>Nonce :</label></div>
-				<div class="w3-twothird"><input class="w3-input w3-border w3-round" name="nonce" type="text"></div>
+				<div class="w3-twothird"><input class="w3-input w3-border w3-round" name="txbNonce" type="text"></div>
 			</div>
 			<div class="w3-row-padding w3-margin-bottom">
 				<div class="w3-third"><label>Data :</label></div>
 				<div class="w3-twothird">
-					<textarea id="data" class="w3-input w3-border w3-round" name="data" style="height:150px"></textarea>
+					<textarea id="data" class="w3-input w3-border w3-round" name="txaData" style="height:150px"></textarea>
 				</div>
 			</div>
 			<div class="w3-row-padding w3-margin-bottom">
 				<div class="w3-third"><label>Hash :</label></div>
-				<div class="w3-twothird"><input class="w3-input w3-border w3-round" name="hash" type="text"></div>
+				<div class="w3-twothird"><input class="w3-input w3-border w3-round" name="txbHash" type="text"></div>
 			</div>
 			<div class="w3-row-padding">
 				<div class="w3-third">&nbsp;</div>
-				<div class="w3-twothird"><button class="w3-btn w3-round w3-blue">Mine <i id="iSpin" class="fa fa-spinner w3-spin" style="font-size:20px"></i></button></div>
+				<div class="w3-twothird"><button class="w3-btn w3-round w3-blue" onclick="hashData();">Mine <i id="iSpin" class="fa fa-spinner w3-spin" style="font-size:20px;display:none;"></i></button></div>
 				</div>
 			</form>
 		</div>
 
 	</div>
 
-	<!-- Blockchain Menu -->
+	<!-- Blockchain Menu Area -->
 	<div id="Blockchain" class="w3-container w3-border menuBlock" style="display:none">
 		<h2>Blockchain</h2>
 		<p>Paris is the capital of France.</p> 
 	</div>
 
-	<!-- Distributed Menu -->
+	<!-- Distributed Menu Area -->
 	<div id="Distributed" class="w3-container w3-border menuBlock" style="display:none">
 		<h2>Distributed</h2>
 		<p>Tokyo is the capital of Japan.</p>
@@ -93,6 +94,19 @@ function openMenu(objEvt, strMenu)
 
 	document.getElementById(strMenu).style.display = "block";
 	objEvt.currentTarget.className += " w3-black";
+}
+
+function hashData()
+{
+	var frm;
+	var strAllData = "";
+	
+	frm = document.frm;
+	strAllData = frm.txbBlockNo.value + frm.txbNonce.value + frm.txaData.value;
+
+
+
+	alert(strAllData);
 }
 </script>
 
