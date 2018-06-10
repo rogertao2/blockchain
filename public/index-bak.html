@@ -44,11 +44,9 @@
 	$(document).ready(function() {
 		$("button[class ~= '" + _strTABLINK_CLSSNM + "']").click(function() {
 			
-			// set active menu block
 			$("div[class ~= '" + _strMENUBLOCK_CLSSNM + "']").hide();
 			$("#" + findMapKeyByValue(_mapDIVID_MENU, $(this).text())).show();
 
-			// set active button
 			$("button[class ~= '" + _strTABLINK_CLSSNM + "']").removeClass("w3-black");
 			$(this).addClass("w3-black");
 
@@ -67,20 +65,7 @@
 			}
 		}
 		return strResult;
-	}
-
-	function hashData()
-	{
-		var frm;
-		var strAllData = "";
-		
-		frm = document.frm;
-		strAllData = frm.txbBlockNo.value + frm.txbNonce.value + frm.txaData.value;
-
-
-
-		alert(strAllData);
-	}
+	}	
 
 	</script>
 
@@ -91,9 +76,12 @@
 	<div class="w3-cell-row w3-blue w3-card">
 		<div class="w3-cell w3-cell-middle w3-container">
 			<div id="btnMenus" class="w3-bar w3-blue">
-				<button class="w3-bar-item w3-button w3-mobile w3-black"></button>
 				<button class="w3-bar-item w3-button w3-mobile"></button>
 				<button class="w3-bar-item w3-button w3-mobile"></button>
+				<button class="w3-bar-item w3-button w3-mobile"></button>
+				<button class="w3-bar-item w3-button w3-mobile tablink2" onclick="openMenu(event, 'Block')">Block2</button>
+				<button class="w3-bar-item w3-button w3-mobile tablink2" onclick="openMenu(event, 'Blockchain')">Blockchain2</button>
+				<button class="w3-bar-item w3-button w3-mobile tablink2" onclick="openMenu(event, 'Distributed')">Distributed2</button>
 			</div>
 		</div>
 		<div class="w3-cell w3-cell-middle w3-center w3-yellow" style="width:25%">
@@ -146,6 +134,41 @@
 		<h2>Distributed</h2>
 		<p>Tokyo is the capital of Japan.</p>
 	</div>
+
+<script>
+function openMenu(objEvt, strMenu)
+{
+	var i, x, tablinks;
+
+	x = document.getElementsByClassName(_strMENUBLOCK_CLSSNM);
+	for(i = 0; i < x.length; i++)
+	{
+		x[i].style.display = "none";
+	}
+
+	tablinks = document.getElementsByClassName("tablink2");
+	for(i = 0; i < x.length; i++)
+	{
+		tablinks[i].className = tablinks[i].className.replace(" w3-black", "");
+	}
+
+	document.getElementById(strMenu).style.display = "block";
+	objEvt.currentTarget.className += " w3-black";
+}
+
+function hashData()
+{
+	var frm;
+	var strAllData = "";
+	
+	frm = document.frm;
+	strAllData = frm.txbBlockNo.value + frm.txbNonce.value + frm.txaData.value;
+
+
+
+	alert(strAllData);
+}
+</script>
 
 </body>
 </html>
