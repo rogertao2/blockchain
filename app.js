@@ -1,11 +1,21 @@
 var express = require('express');
+var bodyParser = require("body-parser");
 var path = require('path');
 var app = express();
 
-app.use(express.static('public'));
+const crypto = require('crypto');
 
-app.post('/api/hash-data', function(req, res) {
-    res.send('Hash Data');
+app.use(express.static('public'));
+app.use(bodyParser.urlencoded({extended : true}));
+
+app.post('/api/data/hash', function(req, res) {
+    var data = req.body.blockNo + ":" + req.body.nonce + ":" + req.body.data;
+    
+    // perform hash data
+    const hash = crypto.createHash('sha256');
+    hash.update(data);
+
+    res.send(hash.digest('base64'));
 });
 
 /*

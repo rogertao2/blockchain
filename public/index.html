@@ -69,19 +69,19 @@
 		return strResult;
 	}
 
-	function hashData()
-	{
-		var frm;
-		var strAllData = "";
-		
-		frm = document.frm;
-		strAllData = frm.txbBlockNo.value + frm.txbNonce.value + frm.txaData.value;
-
-
-
-		alert(strAllData);
-	}
-
+	$(document).ready(function() {
+		$("#btnMine").click(function() {
+			$.post("/api/data/hash",
+			{
+				blockNo: $("#txbBlockNo").val(),
+				nonce: $("#txbNonce").val(),
+				data: $("#txaData").val()
+			},
+			function(data, status) {
+				$("#txbHash").val(data);
+			});
+		});
+	});
 	</script>
 
 </head>
@@ -107,30 +107,28 @@
 		<h2>Block</h2>
 
 		<div class="w3-card w3-padding-16 w3-margin-bottom w3-pale-green">
-			<form name="frm">
 			<div class="w3-row-padding w3-margin-bottom">
 				<div class="w3-third"><label>Block# :</label></div>
-				<div class="w3-twothird"><input class="w3-input w3-border w3-round" name="txbBlockNo" type="text"></div>
+				<div class="w3-twothird"><input class="w3-input w3-border w3-round" id="txbBlockNo" type="text"></div>
 			</div>
 			<div class="w3-row-padding w3-margin-bottom">
 				<div class="w3-third"><label>Nonce :</label></div>
-				<div class="w3-twothird"><input class="w3-input w3-border w3-round" name="txbNonce" type="text"></div>
+				<div class="w3-twothird"><input class="w3-input w3-border w3-round" id="txbNonce" type="text"></div>
 			</div>
 			<div class="w3-row-padding w3-margin-bottom">
 				<div class="w3-third"><label>Data :</label></div>
 				<div class="w3-twothird">
-					<textarea id="data" class="w3-input w3-border w3-round" name="txaData" style="height:150px"></textarea>
+					<textarea class="w3-input w3-border w3-round" id="txaData" style="height:150px"></textarea>
 				</div>
 			</div>
 			<div class="w3-row-padding w3-margin-bottom">
 				<div class="w3-third"><label>Hash :</label></div>
-				<div class="w3-twothird"><input class="w3-input w3-border w3-round" name="txbHash" type="text"></div>
+				<div class="w3-twothird"><input class="w3-input w3-border w3-round" id="txbHash" type="text"></div>
 			</div>
 			<div class="w3-row-padding">
 				<div class="w3-third">&nbsp;</div>
-				<div class="w3-twothird"><button class="w3-btn w3-round w3-blue" onclick="hashData();">Mine <i id="iSpin" class="fa fa-spinner w3-spin" style="font-size:20px;display:none;"></i></button></div>
-				</div>
-			</form>
+				<div class="w3-twothird"><button id="btnMine" class="w3-btn w3-round w3-blue">Mine <i id="iSpin" class="fa fa-spinner w3-spin" style="font-size:20px;display:none;"></i></button></div>
+			</div>
 		</div>
 
 	</div>
